@@ -7,15 +7,13 @@ import {
   IonItem,
   IonLabel,
   IonDatetime,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
 } from '@ionic/react';
 import React, { useState } from 'react';
+import Biorhythm from './components/BiorhythmCard';
 
 function App() {
   const [birthDate, setBirthDate] = useState('');
+  const targetDate = new Date().toISOString();
   return (
     <IonApp>
       <IonHeader>
@@ -32,16 +30,7 @@ function App() {
             onIonChange={(event) => setBirthDate(event.detail.value)}
           />
         </IonItem>
-        <IonCard className="ion-text-center">
-          <IonCardHeader>
-            <IonCardTitle>18 Feb 2020</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            <p>Physical: 83%</p>
-            <p>Physical: 34%</p>
-            <p>Physical: 52%</p>
-          </IonCardContent>
-        </IonCard>
+        <Biorhythm targetDate={targetDate} />
       </IonContent>
     </IonApp>
   );
