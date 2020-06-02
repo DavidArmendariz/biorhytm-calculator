@@ -30,7 +30,9 @@ function App() {
             onIonChange={(event) => setBirthDate(event.detail.value)}
           />
         </IonItem>
-        <Biorhythm targetDate={targetDate} />
+        {birthDate && (
+          <Biorhythm birthDate={birthDate} targetDate={targetDate} />
+        )}
       </IonContent>
     </IonApp>
   );
