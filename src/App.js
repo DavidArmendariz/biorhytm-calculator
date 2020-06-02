@@ -10,9 +10,10 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import Biorhythm from './components/BiorhythmCard';
+import { useLocalStorage } from './hooks';
 
 function App() {
-  const [birthDate, setBirthDate] = useState('');
+  const [birthDate, setBirthDate] = useLocalStorage('birthdate', '');
   const [targetDate, setTargetDate] = useState(new Date().toISOString());
   return (
     <IonApp>
@@ -34,7 +35,7 @@ function App() {
           <IonLabel position="fixed">Target Date:</IonLabel>
           <IonDatetime
             displayFormat="D MMM YYYY"
-            value={birthDate}
+            value={targetDate}
             onIonChange={(event) => setTargetDate(event.detail.value)}
           />
         </IonItem>
