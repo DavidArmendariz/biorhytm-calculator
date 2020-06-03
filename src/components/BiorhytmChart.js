@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 import { calculateBiorhythmsSeries } from '../calculations';
 import dayjs from 'dayjs';
+import './BiorhythmChart.css';
 
 function formatDate(isoString) {
   return dayjs(isoString).format('D MMM');
@@ -22,7 +23,7 @@ const BiorhythmChart = ({ birthDate, targetDate }) => {
     31
   ).map((item) => ({ ...item, date: formatDate(item.date) }));
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer className="biorhythm-chart" width="100%" height={200}>
       <LineChart data={data}>
         <XAxis
           dataKey="date"
@@ -30,9 +31,26 @@ const BiorhythmChart = ({ birthDate, targetDate }) => {
         />
         <CartesianGrid vertical={false} strokeDasharray="3 3" />
         <ReferenceLine x={data[15].date} />
-        <Line dot={false} type="natural" dataKey="physical" stroke="green" />
-        <Line dot={false} type="natural" dataKey="emotional" stroke="red" />
-        <Line dot={false} type="natural" dataKey="intellectual" stroke="blue" />
+        <Line
+          dot={false}
+          type="natural"
+          dataKey="physical"
+          className="physical"
+          stroke="green"
+        />
+        <Line
+          dot={false}
+          type="natural"
+          dataKey="emotional"
+          className="emotional"
+        />
+        <Line
+          dot={false}
+          type="natural"
+          dataKey="intellectual"
+          className="intellectual"
+          stroke="blue"
+        />
       </LineChart>
     </ResponsiveContainer>
   );
